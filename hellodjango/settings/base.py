@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'wagtail.wagtaildocs',
     'wagtail.wagtailimages',
     'wagtail.wagtailsearch',
+    'dashboard',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
+
 
     'modelcluster',
     'taggit',

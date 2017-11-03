@@ -10,9 +10,11 @@ from taggit.models import TaggedItemBase
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel 
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 
 class BlogIndexPage(Page):
@@ -75,6 +77,8 @@ class BlogPage(Page):
         FieldPanel('body'),
         InlinePanel('gallery_images', label="Gallery images"),
     ]
+
+
 
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogPage, related_name='gallery_images')
