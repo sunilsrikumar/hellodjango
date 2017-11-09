@@ -35,19 +35,36 @@ class BlogPeopleRelationship(Orderable, models.Model):
     ]
 
 
-class BlogIndexPage(Page):
-    intro = RichTextField(blank=True)
+class BlogIndexPage(RoutablePageMixin, Page):
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+
+    subpage_types = ['BlogPage']
+
+    def children(self):
+        return self.get_children().specific().live()
 
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
-        context['blogpages'] = blogpages
+        context['posts'] = BlogPage.objects.descendant_of(
+            self).live().order_by(
+            '-date_published')
         return context
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
     ]
-
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', related_name='tagged_items')
