@@ -2,19 +2,37 @@
 from __future__ import unicode_literals
 from django import forms
 from django.db import models
+from django.shortcuts import redirect, render
+
+from django.contrib import messages
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel 
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+
+
+class BlogPeopleRelationship(Orderable, models.Model):
+    page = ParentalKey(
+        'BlogPage', related_name='blog_person_relationship'
+    )
+    people = models.ForeignKey(
+        'home.People', related_name='person_blog_relationship'
+    )
+    panels = [
+        SnippetChooserPanel('people')
+    ]
 
 
 class BlogIndexPage(Page):
