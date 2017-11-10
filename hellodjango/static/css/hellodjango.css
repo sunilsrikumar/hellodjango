@@ -1,0 +1,37 @@
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+
+/* navbar */
+.navbar-brand{
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* heading */
+
+.display-1{
+	font-size: 2.0rem;
+}
+/* fonts */
+
+h2{
+	font-weight: 900;
+	font-size: 
+}
+
+/* row */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+
+.blog-list li {
+  list-style: none;
+}
