@@ -36,9 +36,6 @@ class BlogPeopleRelationship(Orderable, models.Model):
         SnippetChooserPanel('people')
     ]
 
-# class BlogPageTag(TaggedItemBase):
-#     content_object = ParentalKey('BlogPage', related_name='tagged_items')
-
 
 class BlogIndexPage(RoutablePageMixin, Page):
     introduction = models.TextField(
