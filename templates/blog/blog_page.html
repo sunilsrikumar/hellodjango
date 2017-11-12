@@ -9,10 +9,7 @@
 
         <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                {% if page.introduction %}
-                    <p class="intro">{{ page.introduction }}</p>
-                {% endif %}
+            <div class="col-9">
 
                 <div class="blog-meta">
                     {% if page.authors %}
@@ -31,14 +28,20 @@
                     {% endif %}
                 </div>
 
+                <div class="blog-body">
+
                 {{ page.body }}
 
+                </div>
+
+                <div class="blog-footer-tag">
                 {% if page.get_tags %}
                     Tagged with:<br />
                     {% for tag in page.get_tags  %}
-                        <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
+                        <a href="{{ tag.url }}" class="btn btn-light">{{ tag }}</a>
                     {% endfor %}
                 {% endif %}
+                </div>
             </div>
         </div>
     </div>
