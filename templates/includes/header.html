@@ -3,6 +3,7 @@
 {% get_site_root as site_root %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
   <a class="navbar-brand" href="{% pageurl site_root %}" title="{{ site_root.title }}">Hello Django</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,6 +15,7 @@
         {% get_site_root as site_root %}
         {% top_menu parent=site_root calling_page=self %}
     </ul>
-{% endblock %}
   </div>
+{% endblock %}
+</div> <!-- container -->
 </nav>
